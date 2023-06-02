@@ -1,0 +1,90 @@
+answer = input('Вас интересует шифрофание по алогитму Цезаря или его дешифровка? Введите, пожалуйста, Да(Д), если интересует шифрование или Нет(Н) в обратном случае\n')
+s = ''
+f = False
+flag = False
+while f == False:
+    n = input("Какой шаг сдвига?\n")
+    if n.isdigit():
+        n = int(n)
+        language = input("Какой язык будете использовать? Для русского введите RU(ru), для английского EN(en)\n")
+        rus = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
+        eng = 'abcdefghijklmnopqrstuvwxyz'
+        if answer in ("Да", "Д", "да", "д"):
+            shifr = input("Введите предложение, которое вы хотите зашифровать\n")
+            if language in ("RU", 'ru'):
+                for i in shifr:
+                    if i not in ',.!#$%&*+-=?@^_' and i not in ' ':
+                        num = rus.find(i.lower())
+                        if i.upper() == i:
+                            flag = True
+                        else:
+                            flag = False
+                        if flag == True:
+                           ar = rus[(num + n) % 32]
+                           ar = ar.upper()
+                           s += ar
+
+                        else:
+                            s += rus[(num + n) % 32]
+                    else:
+                        s += i
+                    f = True
+            else:
+                for i in shifr:
+                    if i not in ',.!#$%&*+-=?@^_' and i not in ' ':
+                        num = eng.find(i.lower())
+                        if i.upper() == i:
+                            flag = True
+                        else:
+                            flag = False
+                        if flag == True:
+                            ar = eng[(num + n) % 26]
+                            ar = ar.upper()
+                            s += ar
+                        else:
+                            s += eng[(num + n) % 26]
+                    else:
+                        s += i
+                    f = True
+                    print(s)
+        elif answer in ("Нет", "Н", "нет", "н"):
+            shifr = input("Введите предложение, которое вы хотите дешифровать\n")
+            if language in ("RU", 'ru'):
+                for i in shifr:
+                    if i not in ',.!#$%&*+-=?@^_' and i not in ' ':
+                        num = rus.find(i.lower())
+                        if i.upper() == i:
+                            flag = True
+                        else:
+                            flag = False
+                        if flag == True:
+                           ar = rus[(num - n) % 32]
+                           ar = ar.upper()
+                           s += ar
+
+                        else:
+                            s += rus[(num - n) % 32]
+                    else:
+                        s += i
+                    f = True
+            else:
+                for i in shifr:
+                    if i not in ',.!#$%&*+-=?@^_' and i not in ' ':
+                        num = eng.find(i.lower())
+                        if i.upper() == i:
+                            flag = True
+                        else:
+                            flag = False
+                        if flag == True:
+                            ar = eng[(num - n) % 26]
+                            ar = ar.upper()
+                            s += ar
+                        else:
+                            s += eng[(num - n) % 26]
+                    else:
+                        s += i
+                    f = True
+
+    else:
+        print("Введите, пожалуйста, число\n")
+print(s)
